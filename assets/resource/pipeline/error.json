@@ -1,0 +1,21 @@
+{
+    "exitBattle":{
+        "recognition": "DirectHit",
+        "action": "Click",
+        "target": [37,26, 1, 1],
+        "next": ["giveup"]
+    },
+    "giveup":{
+        "recognition": "OCR",
+        "expected": ["放弃挑战"],
+        "action": "Click",
+        "roi": [1132,604,118,85],
+        "next": ["confirm"]
+    },
+    "confirm":{
+        "recognition": "OCR",
+        "expected": ["确定"],
+        "action": "Click",
+        "next": ["again"]
+    }
+}

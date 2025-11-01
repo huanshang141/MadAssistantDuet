@@ -1,0 +1,128 @@
+{
+    "按上6.2秒_for_win": {
+        "recognition": "DirectHit",
+        "action": "LongPressKey",
+        "key": 87,
+        "duration": 6200,
+        "next": [
+            "按左6秒_for_win"
+        ]
+    },
+    "按左6秒_for_win": {
+        "recognition": "DirectHit",
+        "action": "LongPressKey",
+        "key": 65,
+        "duration": 6000,
+        "next": [
+            "按上4秒_for_win"
+        ]
+    },
+    "按上4秒_for_win": {
+        "recognition": "DirectHit",
+        "action": "LongPressKey",
+        "key": 87,
+        "duration": 4000,
+        "next": [
+            "按左26秒_for_win"
+        ]
+    },
+    "按左26秒_for_win": {
+        "recognition": "DirectHit",
+        "action": "LongPressKey",
+        "key": 65,
+        "duration": 26000,
+        "next": [
+            "按上4秒_2_for_win"
+        ]
+    },
+    "按上4秒_2_for_win": {
+        "recognition": "DirectHit",
+        "action": "LongPressKey",
+        "key": 87,
+        "duration": 4000,
+        "next": [
+            "按左3秒_for_win"
+        ]
+    },
+    "按左3秒_for_win": {
+        "recognition": "DirectHit",
+        "action": "LongPressKey",
+        "key": 65,
+        "duration": 3000,
+        "next": [
+            "按上1秒_for_win"
+        ]
+    },
+    "按上1秒_for_win": {
+        "recognition": "DirectHit",
+        "action": "LongPressKey",
+        "key": 87,
+        "duration": 1000,
+        "next": [
+            "按左2.5秒_for_win"
+        ]
+    },
+    "按左2.5秒_for_win": {
+        "recognition": "DirectHit",
+        "action": "LongPressKey",
+        "key": 65,
+        "duration": 2500,
+        "next": [
+            "按下6秒_for_win"
+        ]
+    },
+    "按下6秒_for_win": {
+        "recognition": "DirectHit",
+        "action": "LongPressKey",
+        "key": 83,
+        "duration": 6000,
+        "interrupt": ["autoBattle_for_win"],
+        "timeout": 180000,
+        "on_error": ["exitBattle_for_win"],
+        "next": ["again_for_win"]
+    },
+    "autoBattle_for_win":{
+        "recognition": "DirectHit",
+        "action": "ClickKey",
+        "post_delay": 8000,
+        "key": 69,
+        "next": []
+    },
+        "again_for_win": {
+        "recognition": "OCR",
+        "expected": "再次进行",
+       
+        "action": "Click",
+        "next": [
+            "startChallenge_for_win"
+        ]
+    },
+    "startChallenge_for_win": {
+        "recognition": "OCR",
+        "expected": "开始挑战",
+        
+        "action": "Click",
+        "post_delay": 10000,
+        "next": [
+            "按上6.2秒_for_win"
+        ]
+    },
+    "exitBattle_for_win":{
+        "recognition": "DirectHit",
+        "action": "ClickKey",
+        "key": 27,
+        "next": ["giveup_for_win"]
+    },
+    "giveup_for_win":{
+        "recognition": "OCR",
+        "expected": ["放弃挑战"],
+        "action": "Click",
+        "next": ["confirm_for_win"]
+    },
+    "confirm_for_win":{
+        "recognition": "OCR",
+        "expected": ["确定"],
+        "action": "Click",
+        "next": ["again_for_win"]
+    }
+}

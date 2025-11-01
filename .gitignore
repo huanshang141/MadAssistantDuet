@@ -449,3 +449,10 @@ tools/ImageCropper/**/*.png
 
 config
 debug
+assets/resource/pipeline/note.md
+assets/resource/image/map1/00start.png
+assets/resource/image/map1/01left.png
+assets/resource/image/map1/02straight.png
+assets/resource/image/map1/03left.png
+assets/resource/image/委托结束/开始挑战.png
+assets/resource/image/委托结束/再次进行.png

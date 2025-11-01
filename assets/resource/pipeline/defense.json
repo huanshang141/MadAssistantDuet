@@ -1,0 +1,84 @@
+{
+    "按上6.2秒": {
+        "recognition": "DirectHit",
+        "action": "LongPress",
+        "target": [206, 508, 1, 1],
+        "duration": 6200,
+        "next": [
+            "按左6秒"
+        ]
+    },
+    "按左6秒": {
+        "recognition": "DirectHit",
+        "action": "LongPress",
+        "target": [166, 556, 1, 1],
+        "duration": 6000,
+        "next": [
+            "按上4秒"
+        ]
+    },
+    "按上4秒": {
+        "recognition": "DirectHit",
+        "action": "LongPress",
+        "target": [206, 508, 1, 1],
+        "duration": 4000,
+        "next": [
+            "按左26秒"
+        ]
+    },
+    "按左26秒": {
+        "recognition": "DirectHit",
+        "action": "LongPress",
+        "target": [166, 556, 1, 1],
+        "duration": 26000,
+        "next": [
+            "按上4秒_2"
+        ]
+    },
+    "按上4秒_2": {
+        "recognition": "DirectHit",
+        "action": "LongPress",
+        "target": [206, 508, 1, 1],
+        "duration": 4000,
+        "next": [
+            "按左3秒"
+        ]
+    },
+    "按左3秒": {
+        "recognition": "DirectHit",
+        "action": "LongPress",
+        "target": [166, 556, 1, 1],
+        "duration": 3000,
+        "next": [
+            "按上1秒"
+        ]
+    },
+    "按上1秒": {
+        "recognition": "DirectHit",
+        "action": "LongPress",
+        "target": [206, 508, 1, 1],
+        "duration": 1000,
+        "next": [
+            "按左2.5秒"
+        ]
+    },
+    "按左2.5秒": {
+        "recognition": "DirectHit",
+        "action": "LongPress",
+        "target": [166, 556, 1, 1],
+        "duration": 2500,
+        "next": [
+            "按下6秒"
+        ]
+    },
+    "按下6秒": {
+        "recognition": "DirectHit",
+        "action": "LongPress",
+        "target": [208, 619, 1, 1],
+        "duration": 6000,
+        "interrupt": ["autoBattle"],
+        "timeout": 180000,
+        "on_error": ["exitBattle"],
+        "next": ["again"]
+    }
+}

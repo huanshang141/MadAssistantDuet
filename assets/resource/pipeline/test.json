@@ -1,0 +1,40 @@
+{
+    "again": {
+        "recognition": "OCR",
+        "expected": "再次进行",
+       
+        "action": "Click",
+        "next": [
+            "startChallenge"
+        ]
+    },
+    "startChallenge": {
+        "recognition": "OCR",
+        "expected": "开始挑战",
+        
+        "action": "Click",
+        "post_delay": 10000,
+        "next": [
+            "按上6.2秒"
+        ]
+    },
+    "longPressW": {
+        "recognition": "DirectHit",
+        "action": "LongPress",
+        "target": [206, 508, 1, 1],//上
+        "duration": 10000,
+        "pre_delay": 10000,
+        "timeout": 240000,
+        "on_error": ["exitBattle"],
+        "next": [
+            "again"
+        ]
+    },
+    "autoBattle":{
+        "recognition": "DirectHit",
+        "action": "Click",
+        "post_delay": 8000,
+        "target": [879, 629, 1, 1],
+        "next": []
+    }
+}

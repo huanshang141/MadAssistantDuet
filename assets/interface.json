@@ -37,7 +37,23 @@
     "task": [
         {
             "name": "普通任务",
-            "entry": "MyTask1"
+            "entry": "again"
+        },
+        {
+            "name": "退出",
+            "entry": "exitBattle"
+        },
+        {
+            "name": "test_defense",
+            "entry": "按上6.2秒"
+        },
+        {
+            "name": "test_defense_for_win",
+            "entry": "按上6.2秒_for_win"
+        },
+        {
+            "name": "test_defense_for_win_again",
+            "entry": "按上6.2秒_for_win"
         },
         {
             "name": "选项任务",
