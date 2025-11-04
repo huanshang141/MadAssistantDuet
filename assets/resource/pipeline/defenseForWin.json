@@ -111,7 +111,7 @@
         "action": "Custom",
         "custom_action": "LongPressWithTimeoutDetection",
         "custom_action_param": {
-            "check_interval": 1000,
+            "check_interval": 5000,
             "total_timeout": 200000,
             "target_node": "again_for_win",
             "interrupt_node": "autoBattle_for_win"
@@ -122,7 +122,7 @@
     "autoBattle_for_win":{
         "recognition": "DirectHit",
         "action": "ClickKey",
-        "post_delay": 8000,
+        "post_delay": 5000,
         "key": 69,
         "next": []
     },

@@ -28,26 +28,31 @@
     },
     "task": [
         {
-            "name":"闪避键设置（默认为右键）",
+            "name":"闪避键设置（默认为L Shift）",
             "entry":"SetDodgeKey",
-            "doc":"设置闪避键，默认为右键，务必勾选",
+            "doc":"设置闪避键，默认为L Shift",
             "option": ["闪避键设置"]
         },
         {
             "name": "65级mod（扼守）",
             "entry": "def_map1_entry",
             "doc": "进入指定副本后，即可启动，会先自动退出一次复位"
+        },
+        {
+            "name": "驱离通用",
+            "entry": "expulsion_entry",
+            "doc": "驱离本的通用流程，进入副本后再启动脚本"
         }
     ],
     "option": {
         "闪避键设置": {
             "cases": [
                 {
-                    "name": "Shift键",
+                    "name": "左Shift键",
                     "pipeline_override": {
                         "SetDodgeKey": {
                             "custom_action_param": {
-                                "dodge_key": 16
+                                "dodge_key": 160
                             }
                         }
                     }
@@ -123,7 +128,7 @@
                     }
                 }
             ],
-            "default_case": "鼠标右键"
+            "default_case": "左Shift键"
         }
     }
 }

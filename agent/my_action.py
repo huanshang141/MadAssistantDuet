@@ -100,7 +100,7 @@ class LongPressWithTimeoutDetection(CustomAction):
             logger.error(f"  参数内容: {argv.custom_action_param}")
             return False
         
-        check_interval = params.get("check_interval", 1000)  # 检测间隔
+        check_interval = params.get("check_interval", 5000)  # 检测间隔
         total_timeout = params.get("total_timeout", 180000)  # 总超时时间 180s
         target_node = params.get("target_node", "again_for_win")  # 要检测的目标节点
         interrupt_node = params.get("interrupt_node", "autoBattle_for_win")  # 未检测到时的候补节点
@@ -164,9 +164,9 @@ class LongPressWithTimeoutDetection(CustomAction):
                         logger.info(f"[LongPressWithTimeoutDetection] -> 执行了按键 E (自动战斗)")
                         
                         # 等待 interrupt 节点的 post_delay
-                        logger.info(f"[LongPressWithTimeoutDetection] -> 等待 8 秒...")
-                        time.sleep(8)  # autoBattle_for_win 的 post_delay 是 8000ms
-                        
+                        # logger.info(f"[LongPressWithTimeoutDetection] -> 等待 5 秒...")
+                        # time.sleep(5)  # autoBattle_for_win 的 post_delay 是 5000ms
+
                     except Exception as e:
                         logger.error(f"[LongPressWithTimeoutDetection] 执行 interrupt 节点出错: {e}", exc_info=True)
                     

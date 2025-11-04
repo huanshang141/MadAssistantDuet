@@ -1,0 +1,76 @@
+{
+    "expulsion_entry":{
+        "recognition": "DirectHit",
+        "action": "ClickKey",
+        "key": 27,
+        "next": ["expulsion_giveup"]
+    },
+    "expulsion_giveup":{
+        "recognition": "OCR",
+        "expected": ["放弃挑战"],
+        "action": "Click",
+        "next": ["expulsion_confirm"]
+    }, 
+    "expulsion_confirm":{
+        "recognition": "OCR",
+        "expected": ["确定"],
+        "action": "Click",
+        "next": ["expulsion_again"]
+    },
+    "expulsion_again": {
+        "recognition": "OCR",
+        "expected": "再次进行",
+        "timeout": 1000,
+        "action": "Click",
+        "next": ["expulsion_start"]
+    },
+    "expulsion_start": {
+        "recognition": "OCR",
+        "expected": "开始挑战",
+        "action": "Click",
+        "next": ["expulsion_in_battle"]
+    },
+    "expulsion_in_battle":{
+        "recognition": "OCR",
+        "expected": "驱离所有敌人",
+        "post_delay": 2000,
+        "action": "DoNothing",
+        "next": ["expulsion_a1"]
+    },
+    "expulsion_a1":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "w",     
+            "duration": 4,       
+            "shift_delay": 0.05  
+        },
+        "next": ["expulsion_a2"]
+    },
+    "expulsion_a2":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "d",     
+            "duration": 2,       
+            "shift_delay": 0.05  
+        },
+        "next": ["expulsion_auto_battle"]
+    },
+        "expulsion_auto_battle": {
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressWithTimeoutDetection",
+        "custom_action_param": {
+            "check_interval": 5000,
+            "total_timeout": 200000,
+            "target_node": "expulsion_again",
+            "interrupt_node": "autoBattle_for_win"
+        },
+        "on_error": ["expulsion_entry"],
+        "next": []
+    }
+
+}

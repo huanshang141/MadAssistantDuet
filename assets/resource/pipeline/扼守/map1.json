@@ -96,7 +96,7 @@
         "action": "Custom",
         "custom_action": "LongPressWithTimeoutDetection",
         "custom_action_param": {
-            "check_interval": 1000,
+            "check_interval": 5000,
             "total_timeout": 200000,
             "target_node": "def_map1_again",
             "interrupt_node": "autoBattle_for_win"
