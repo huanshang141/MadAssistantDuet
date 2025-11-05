@@ -1,5 +1,5 @@
 {
     "logging": true,
-    "save_draw": false,
+    "save_draw": true,
     "stdout_level": 2
 }

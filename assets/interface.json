@@ -36,7 +36,7 @@
             "entry": "set_auto_battle_mode",
             "doc":"设置自动战斗的模式，默认是循环E，适用于水母等开E不会动的角色",
             "option": ["自动战斗设置"]
-        }
+        },
         {
             "name": "65级mod（扼守）",
             "entry": "def_map1_entry",
