@@ -13,7 +13,7 @@ _original_stderr_encoding = None
 
 
 def set_utf8_encoding():
-    """设置系统编码为 UTF-8，并保存原始编码"""
+    """设置系统编码为 GBK，并保存原始编码"""
     global _original_encoding, _original_stdout_encoding, _original_stderr_encoding
     
     try:
@@ -24,7 +24,7 @@ def set_utf8_encoding():
         _original_stdout_encoding = sys.stdout.encoding if hasattr(sys.stdout, 'encoding') else None
         _original_stderr_encoding = sys.stderr.encoding if hasattr(sys.stderr, 'encoding') else None
         
-        # 在 Windows 上设置控制台代码页为 UTF-8
+        # 在 Windows 上设置控制台代码页为 GBK
         if sys.platform == 'win32':
             try:
                 import ctypes
@@ -32,31 +32,31 @@ def set_utf8_encoding():
                 kernel32 = ctypes.windll.kernel32
                 original_cp = kernel32.GetConsoleOutputCP()
                 
-                # 设置为 UTF-8 (代码页 65001)
-                kernel32.SetConsoleOutputCP(65001)
-                kernel32.SetConsoleCP(65001)
+                # 设置为 GBK (代码页 936)
+                kernel32.SetConsoleOutputCP(936)
+                kernel32.SetConsoleCP(936)
             except Exception as e:
                 # 静默处理，稍后输出
                 pass
         
-        # 重新包装 stdout 和 stderr 为 UTF-8
-        if sys.stdout.encoding != 'utf-8':
-            sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
+        # 重新包装 stdout 和 stderr 为 GBK
+        if sys.stdout.encoding not in ['gbk', 'cp936', 'gb2312']:
+            sys.stdout = codecs.getwriter('gbk')(sys.stdout.detach())
         
-        if sys.stderr.encoding != 'utf-8':
-            sys.stderr = codecs.getwriter('utf-8')(sys.stderr.detach())
+        if sys.stderr.encoding not in ['gbk', 'cp936', 'gb2312']:
+            sys.stderr = codecs.getwriter('gbk')(sys.stderr.detach())
         
         # 现在可以安全地输出中文了
         print(f"[编码管理] 原始系统编码: {_original_encoding}")
         print(f"[编码管理] 原始 stdout 编码: {_original_stdout_encoding}")
         print(f"[编码管理] 原始 stderr 编码: {_original_stderr_encoding}")
         if sys.platform == 'win32':
-            print(f"[编码管理] 已设置控制台代码页为 UTF-8 (65001)")
-        print(f"[编码管理] [OK] UTF-8 编码设置完成")
+            print(f"[编码管理] 已设置控制台代码页为 GBK (936)")
+        print(f"[编码管理] [OK] GBK 编码设置完成")
         
     except Exception as e:
         # 这里也可以安全输出了
-        print(f"[编码管理] [错误] 设置 UTF-8 编码时出错: {e}")
+        print(f"[编码管理] [错误] 设置 GBK 编码时出错: {e}")
         import traceback
         traceback.print_exc()
 
@@ -113,7 +113,7 @@ script_dir = Path(__file__).parent.absolute()
 if str(script_dir) not in sys.path:
     sys.path.insert(0, str(script_dir))
 
-# 设置 UTF-8 编码（在所有导入之前）
+# 设置 GBK 编码（在所有导入之前）
 set_utf8_encoding()
     
 print(f"脚本目录: {script_dir}")
