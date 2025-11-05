@@ -1,0 +1,373 @@
+{
+    "mediate_entry":{
+        "recognition": "DirectHit",
+        "action": "ClickKey",
+        "key": 27,
+        "next": ["mediate_giveup"]
+    },
+    "mediate_giveup":{
+        "recognition": "OCR",
+        "expected": ["放弃挑战"],
+        "action": "Click",
+        "next": ["mediate_confirm"]
+    },
+    "mediate_confirm":{
+        "recognition": "OCR",
+        "expected": ["确定"],
+        "action": "Click",
+        "next": ["mediate_again"]
+    },
+    "mediate_again": {
+        "recognition": "OCR",
+        "expected": "再次进行",
+        "timeout": 1000,
+        "action": "Click",
+        "next": ["mediate_start"]
+    },
+    "mediate_start": {
+        "recognition": "OCR",
+        "expected": "开始挑战",
+        "action": "Click",
+        "next": ["mediate_in_battle"]
+    },
+    "mediate_in_battle":{
+        "recognition": "OCR",
+        "expected": "白",
+        "post_delay": 2000,
+        "action": "DoNothing",
+        "next": ["mediate_a1"]
+    },
+    "mediate_a1":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "d",
+            "duration": 2.2
+        },
+        "next": ["mediate_a2"]
+    },
+    "mediate_a2":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "w",
+            "duration": 8.7,
+            "shift_delay": 0.05
+        },
+        "next": ["mediate_a4"]
+    },
+    "mediate_a4":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "a",
+            "duration": 2.2
+        },
+        "next": ["mediate_a5"]
+    },
+    "mediate_a5":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "w",
+            "duration": 4.8,
+            "shift_delay": 0.05
+        },
+        "next": ["mediate_a6"]
+    },
+    "mediate_a6":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "a",
+            "duration": 1.2,
+            "shift_delay": 0.05
+        },
+        "next": ["mediate_a7"]
+    },
+    "mediate_a7":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "w",
+            "duration": 4.5,
+            "shift_delay": 0.05
+        },
+        "next": ["mediate_a8"]
+    },
+    "mediate_a8":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "d",
+            "duration": 5
+        },
+        "next": ["mediate_a9"]
+    },
+    "mediate_a9":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "w",
+            "duration": 1.5
+        },
+        "next": ["mediate_a10"]
+    },
+    "mediate_a10":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "a",
+            "duration": 1.5,
+            "shift_delay": 0.05
+        },
+        "next": ["mediate_a11"]
+    },
+    "mediate_a11":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithJump",
+        "custom_action_param": {
+            "direction": "w",
+            "duration": 5.2,
+            "dodge_delay": 0.05,
+            "jump_interval": 1,
+            "jump_press_time": 0.1
+        },
+        "timeout": 3000,
+        "on_error": ["mediate_entry"],
+        "next": ["mediate_a12"]
+    },
+    "mediate_a12":{
+        "recognition": "OCR",
+        "expected": "暴露引信",
+        "action": "ClickKey",
+        "post_delay": 2000,
+        "key": 70,
+        "next": ["mediate_a13"]
+    },
+    "mediate_a13":{
+        "recognition": "DirectHit",
+        "action": "ClickKey",
+        "key": 70,
+        "post_delay": 1000,
+        "next": ["mediate_a14"]
+    },
+    "mediate_a14":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "w",
+            "duration": 6
+        },
+        "next": ["mediate_a15"]
+    },
+    "mediate_a15":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressWithTimeoutDetection",
+        "custom_action_param": {
+            "check_interval": 3000,
+            "total_timeout": 40000,
+            "target_node": "mediate_win",
+            "interrupt_node": "autoBattle_for_win"
+        },
+        "on_error": ["mediate_entry"],
+        "next": []
+    },
+    "mediate_win": {
+        "recognition": "OCR",
+        "expected": ["撤离点"],
+        "action": "DoNothing",
+        "next": ["mediate_a16"]
+    },
+    "mediate_a16":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "s",
+            "duration": 4
+        },
+        "next": ["mediate_a17"]
+    },
+    "mediate_a17":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "a",
+            "duration": 5.1
+        },
+        "next": ["mediate_a17_fix"]
+    },
+    "mediate_a17_fix":{
+        "recognition": "DirectHit",
+        "action": "ClickKey",
+        "key": 69,
+        "post_delay": 5000,
+        "next": ["mediate_a18"]
+    },
+    "mediate_a18":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "s",
+            "duration": 4.6
+        },
+        "next": ["mediate_a19"]
+    },
+    "mediate_a19":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "a",
+            "duration": 5.4
+        },
+        "next": ["mediate_a20"]
+    },
+    "mediate_a20":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "w",
+            "duration": 5.2
+        },
+        "next": ["mediate_a21"]
+    },
+    "mediate_a21":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "a",
+            "duration": 5.8,
+            "shift_delay": 0.05
+        },
+        "next": ["mediate_a22"]
+    },
+    "mediate_a22":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "s",
+            "duration": 1.5
+        },
+        "next": ["mediate_a23"]
+    },
+    "mediate_a23":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "a",
+            "duration": 5.5,
+            "shift_delay": 0.05
+        },
+        "next": ["mediate_a24"]
+    },
+    "mediate_a24":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "w",
+            "duration": 1
+        },
+        "next": ["mediate_a25"]
+    },
+    "mediate_a25":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "post_delay": 3000,
+        "custom_action_param": {
+            "key": "a",
+            "duration": 1.5
+        },
+        "next": ["mediate_a26"]
+    },
+    "mediate_a26":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "LongPressKey",
+        "custom_action_param": {
+            "key": "d",
+            "duration": 0.7
+        },
+        "next": ["mediate_a27"]
+    },
+    "mediate_a27":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "w",
+            "duration": 5.8,
+            "shift_delay": 0.05
+        },
+        "post_delay": 3000,
+        "next": ["mediate_a28"]
+    },
+    "mediate_a28":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "a",
+            "duration": 1.5,
+            "shift_delay": 0.05
+        },
+        "next": ["mediate_a29"]
+    },
+    "mediate_a29":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "w",
+            "duration": 3,
+            "shift_delay": 0.05
+        },
+        "next": ["mediate_a30"]
+    },
+    "mediate_a30":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "d",
+            "duration": 1.2,
+            "shift_delay": 0.05
+        },
+        "next": ["mediate_a31"]
+    },
+    "mediate_a31":{
+        "recognition": "DirectHit",
+        "action": "Custom",
+        "custom_action": "RunWithShift",
+        "custom_action_param": {
+            "direction": "w",
+            "duration": 12,
+            "shift_delay": 0.05
+        },
+        "timeout": 20000,
+        "on_error": ["mediate_entry"],
+        "next": ["mediate_again"]
+    }
+
+}
