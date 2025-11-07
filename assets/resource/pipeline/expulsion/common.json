@@ -4,7 +4,7 @@
         "action": "ClickKey",
         "key": 27,
         "post_delay": 1000,
-        "next": ["expulsion_giveup"]
+        "next": ["expulsion_giveup","expulsion_giveup_template"]
     },
     "expulsion_giveup":{
         "recognition": "OCR",
@@ -13,6 +13,13 @@
         "post_delay": 1000,
         "next": ["expulsion_confirm"]
     }, 
+    "expulsion_giveup_template":{
+        "recognition": "TemplateMatch",
+        "template": "common/放弃挑战.png",
+        "action": "Click",
+        "post_delay": 1000,
+        "next": ["expulsion_confirm"]
+    },
     "expulsion_confirm":{
         "recognition": "OCR",
         "expected": ["确定"],

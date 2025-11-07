@@ -4,7 +4,7 @@
         "action": "ClickKey",
         "key": 27,
         "post_delay": 1000,
-        "next": ["def_map1_giveup"]
+        "next": ["def_map1_giveup","def_map1_giveup_template"]
     },
     "def_map1_giveup":{
         "recognition": "OCR",
@@ -13,6 +13,13 @@
         "post_delay": 1000,
         "next": ["def_map1_confirm"]
     }, 
+    "def_map1_giveup_template":{
+        "recognition": "TemplateMatch",
+        "template": "common/放弃挑战.png",
+        "action": "Click",
+        "post_delay": 1000,
+        "next": ["def_map1_confirm"]
+    },
     "def_map1_confirm":{
         "recognition": "OCR",
         "expected": ["确定"],

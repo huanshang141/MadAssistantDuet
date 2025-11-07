@@ -119,25 +119,39 @@ class ResetCharacterPosition(CustomAction):
             return False
     
     def _step2_click_settings(self, context: Context, wait_delay: int, retry_times: int, retry_interval: int) -> bool:
-        """步骤 2: OCR 识别并点击"设置" (带重试机制)"""
-        logger.info("[ResetCharacterPosition] 步骤 2: OCR 识别并点击'设置'...")
+        """步骤 2: OCR 识别并点击"设置" (带重试机制，每次重试尝试两种识别方式)"""
+        logger.info("[ResetCharacterPosition] 步骤 2: 识别并点击'设置'...")
         
         for attempt in range(1, retry_times + 1):
             try:
-                logger.info(f"  尝试 {attempt}/{retry_times}: OCR 识别'设置'...")
+                logger.info(f"  尝试 {attempt}/{retry_times}: 识别'设置'...")
                 
                 # 刷新截图
                 context.tasker.controller.post_screencap().wait()
                 image = context.tasker.controller.cached_image
                 
-                # 使用预定义节点 OCR_Settings (在 resetPosition.json 中定义)
-                reco_result = context.run_recognition(
-                    "OCR_Settings",
-                    image
-                )
+                # 定义要尝试的识别节点列表
+                recognition_nodes = ["OCR_Settings", "Template_Match_Setting"]
+                reco_result = None
+                detected_method = None
                 
+                # 依次尝试两种识别方式
+                for node_name in recognition_nodes:
+                    logger.info(f"  -> 尝试识别方式: '{node_name}'")
+                    current_reco_result = context.run_recognition(node_name, image)
+                    
+                    # 检查识别结果是否有效
+                    if current_reco_result and current_reco_result.box and current_reco_result.box.w > 0:
+                        logger.info(f"  -> [OK] 通过 '{node_name}' 识别成功")
+                        reco_result = current_reco_result
+                        detected_method = node_name
+                        break
+                    else:
+                        logger.info(f"  -> [X] 通过 '{node_name}' 未识别到")
+                
+                # 检查是否有任何一种方式识别成功
                 if not reco_result or not reco_result.box or reco_result.box.w == 0:
-                    logger.warning(f"  尝试 {attempt}/{retry_times}: 未找到'设置'文字")
+                    logger.warning(f"  尝试 {attempt}/{retry_times}: 两种方式均未找到'设置'")
                     
                     # 如果不是最后一次尝试，等待后重试
                     if attempt < retry_times:
@@ -148,7 +162,7 @@ class ResetCharacterPosition(CustomAction):
                         logger.error(f"  [X] 已达最大重试次数 ({retry_times})")
                         return False
                 
-                logger.info(f"  [OK] 找到'设置': box=({reco_result.box.x}, {reco_result.box.y}, {reco_result.box.w}, {reco_result.box.h})")
+                logger.info(f"  [OK] 找到'设置' (通过 {detected_method}): box=({reco_result.box.x}, {reco_result.box.y}, {reco_result.box.w}, {reco_result.box.h})")
                 time.sleep(0.5) 
                 
                 # 点击识别框的中心
@@ -381,13 +395,17 @@ class AutoBattle(CustomAction):
         
         check_interval = params.get("check_interval", 5000)  # 检测间隔
         total_timeout = params.get("total_timeout", 180000)  # 总超时时间 180s
-        target_node = params.get("target_node", "again_for_win")  # 要检测的目标节点
+        target_nodes = params.get("target_node", ["again_for_win"])  # 要检测的目标节点（支持数组）
         interrupt_node = params.get("interrupt_node", "autoBattle_for_win")  # 未检测到时的候补节点
+        
+        # 兼容旧配置：如果 target_node 是字符串，转换为数组
+        if isinstance(target_nodes, str):
+            target_nodes = [target_nodes]
         
         logger.info("=" * 50)
         logger.info("[AutoBattle] 开始战斗循环检测")
         logger.info(f"  检测间隔: {check_interval}ms, 总超时: {total_timeout}ms")
-        logger.info(f"  目标节点: {target_node}, 中断节点: {interrupt_node}")
+        logger.info(f"  目标节点: {target_nodes}, 中断节点: {interrupt_node}")
         
         try:
             # 开始循环检测目标节点
@@ -395,6 +413,9 @@ class AutoBattle(CustomAction):
             loop_count = 0
             
             while True:
+                if context.tasker.stopping:
+                    logger.info("[AutoBattle] 任务暂停")
+                    return False
                 loop_count += 1
                 elapsed = (time.time() - start_time) * 1000  # 已经过的时间（毫秒）
                 
@@ -405,33 +426,42 @@ class AutoBattle(CustomAction):
                     return False
                 
                 # 尝试检测目标节点
-                logger.info(f"[AutoBattle] 第 {loop_count} 次检测 '{target_node}'... (已用时: {int(elapsed)}ms / {total_timeout}ms)")
+                logger.info(f"[AutoBattle] 第 {loop_count} 次检测 {target_nodes}... (已用时: {int(elapsed)}ms / {total_timeout}ms)")
                 
                 # 获取最新截图
                 sync_job = context.tasker.controller.post_screencap()
                 sync_job.wait()
                 image = context.tasker.controller.cached_image  # 这是属性,不是方法
                 
-                # 运行目标节点的识别
-                reco_result = context.run_recognition(target_node, image)
+                # 依次对所有目标节点进行识别
+                detected_node = None
+                reco_result = None
                 
-                # 检查识别结果是否有效（box 不为 None 且宽高大于 0）
-                if reco_result and reco_result.box and reco_result.box.w > 0 and reco_result.box.h > 0:
-                    logger.info(f"[AutoBattle] [OK] 检测到 '{target_node}'")
+                for target_node in target_nodes:
+                    logger.info(f"[AutoBattle] -> 尝试识别节点: '{target_node}'")
+                    current_reco_result = context.run_recognition(target_node, image)
+                    
+                    # 检查识别结果是否有效（box 不为 None 且宽高大于 0）
+                    if current_reco_result and current_reco_result.box and current_reco_result.box.w > 0 and current_reco_result.box.h > 0:
+                        logger.info(f"[AutoBattle] -> [OK] 识别到节点: '{target_node}'")
+                        detected_node = target_node
+                        reco_result = current_reco_result
+                        break
+                    else:
+                        logger.info(f"[AutoBattle] -> [X] 未识别到节点: '{target_node}'")
+                
+                # 检查是否有任何一个节点被识别到
+                if detected_node:
+                    logger.info(f"[AutoBattle] [OK] 检测到 '{detected_node}'")
                     logger.info(f"  识别框: x={reco_result.box.x}, y={reco_result.box.y}, w={reco_result.box.w}, h={reco_result.box.h}")
                     logger.info(f"  识别算法: {reco_result.algorithm}")
                     logger.info(f"  总循环次数: {loop_count}, 总用时: {int(elapsed)}ms")
                     # 动态设置 next 节点
-                    context.override_next(argv.node_name, [target_node])
+                    context.override_next(argv.node_name, [detected_node])
                     return True
                 else:
-                    # 详细记录未识别的原因
-                    if not reco_result:
-                        logger.info(f"[AutoBattle] [X] 未检测到 '{target_node}' (reco_result 为 None)")
-                    elif not reco_result.box:
-                        logger.info(f"[AutoBattle] [X] 未检测到 '{target_node}' (box 为 None)")
-                    else:
-                        logger.info(f"[AutoBattle] [X] 未检测到 '{target_node}' (box 无效: w={reco_result.box.w}, h={reco_result.box.h})")
+                    # 所有节点都未识别到
+                    logger.info(f"[AutoBattle] [X] 未检测到任何目标节点 {target_nodes}")
                     
                     logger.info(f"[AutoBattle] -> 执行 interrupt '{interrupt_node}'")
                  

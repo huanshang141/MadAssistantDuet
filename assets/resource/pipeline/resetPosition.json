@@ -12,10 +12,14 @@
     
     "OCR_Settings": {
         "recognition": "OCR",
-        "expected": ["设置"],
+        "expected": ["设置","设管"],
         "action": "Click"
     },
-    
+    "Template_Match_Setting":{
+        "recognition": "TemplateMatch",
+        "template": "common/设置.png",
+        "action": "Click"
+    },
     "Template_Other": {
         "recognition": "TemplateMatch",
         "template": "common/其他.png",
@@ -32,12 +36,5 @@
         "recognition": "OCR",
         "expected": ["确定"],
         "action": "Click"
-    },
-    
-    "TestRecognition": {
-        "recognition": "DirectHit",
-        "action": "Custom",
-        "custom_action": "TestRecognition",
-        "next": []
     }
 }
