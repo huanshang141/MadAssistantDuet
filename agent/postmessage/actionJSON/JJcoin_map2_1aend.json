@@ -1,0 +1,197 @@
+{
+  "name": "JJcoin_map2_1aend",
+  "created_time": "2025-11-08 12:38:12",
+  "total_time": 32.309619665145874,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 0.8477451801300049
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 1.7078909873962402
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 1.8238911628723145
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 2.6159019470214844
+    },
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 2.7161381244659424
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 3.70375919342041
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 4.5398008823394775
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 5.2401111125946045
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 9.811835527420044
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 9.812891483306885
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 10.723851203918457
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 11.19182538986206
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 15.695794105529785
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 15.699817419052124
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 16.624046802520752
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 18.579724073410034
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 18.831769227981567
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 19.079879999160767
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 19.883878231048584
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 21.13979458808899
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 21.623859167099
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 21.99187469482422
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 23.8918719291687
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 24.796082019805908
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 25.516143560409546
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 25.644171237945557
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 26.44396710395813
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 26.563992023468018
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 27.36817455291748
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 27.50381565093994
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 28.26397466659546
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 28.371863842010498
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 29.211849451065063
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 29.343902826309204
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 29.735975742340088
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 29.871803760528564
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 32.30777931213379
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 32.309619665145874
+    }
+  ]
+}

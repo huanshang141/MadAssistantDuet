@@ -1,0 +1,152 @@
+{
+    "JJcoin_rounds": {
+        "action": "Custom",
+        "custom_action": "SetBattleRounds",
+        "custom_action_param": {
+            "battle_rounds": 3
+        },
+        "next": ["JJcoin_entry"]
+    },
+    "JJcoin_entry": {
+        "recognition": "DirectHit",
+        "action": "ClickKey",
+        "key": 27,
+        "post_delay": 1000,
+        "next": ["JJcoin_giveup"]
+    },
+    "JJcoin_giveup":{
+        "recognition": "OCR",
+        "expected": ["放弃挑战"],
+        "action": "Click",
+        "post_delay": 1000,
+        "next": ["JJcoin_confirm"]
+    }, 
+    "JJcoin_confirm":{
+        "recognition": "OCR",
+        "expected": ["确定"],
+        "action": "Click",
+        "post_delay": 1000,
+        "next": ["JJcoin_again"]
+    },
+    "JJcoin_again": {
+        "recognition": "OCR",
+        "expected": "再次进行",
+        "action": "Click",
+        "post_delay": 1000,
+        "next": ["JJcoin_start"]
+    },
+    "JJcoin_start": {
+        "recognition": "OCR",
+        "expected": "开始挑战",
+        "post_delay": 1000,
+        "action": "Click",
+        "next": ["JJcoin_in_battle"]
+    },
+    "JJcoin_in_battle":{
+        "recognition":  "OCR",
+        "expected": "前往目标点",
+        "roi" : [1100,0,180,178],
+        "post_delay": 2000,
+        "action": "DoNothing",
+        "next": ["JJcoin_map_rec"]
+    },
+    "JJcoin_map_rec":{
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "post_delay": 2000,
+        "next": ["JJcoin_map1","JJcoin_map2"]
+    },
+    "JJcoin_map1":{
+        "recognition": "TemplateMatch",
+        "template": ["JJcoin/map1_start.jpg"],
+        "threshold": [0.83],
+        "roi" : [0,0,267,260],
+        "post_delay": 2000,
+        "action": "Custom",
+        "custom_action":"JsonActionSequence",
+        "custom_action_param":"JJcoin_map1_startend.json",
+        "next": ["JJcoin_taskcheck"],
+        "timeout": 20000,
+        "on_error": ["JJcoin_entry"]
+    },
+    "JJcoin_map2":{
+        "recognition": "TemplateMatch",
+        "template": ["JJcoin/map2_start.jpg"],
+        "threshold": [0.83],
+        "roi" : [0,0,267,260],
+        "post_delay": 2000,
+        "action": "Custom",
+        "custom_action":"JsonActionSequence",
+        "custom_action_param": "JJcoin_map2_start1.json",
+        "on_error": ["JJcoin_entry"],
+        "next": ["JJcoin_map2_1a","JJcoin_map2_1b"]
+    },
+    "JJcoin_map2_1a":{
+        "recognition": "TemplateMatch",
+        "template": ["JJcoin/map2_1a.jpg"],
+        "roi" : [21,111,315,277],
+        "threshold": [0.7],
+        "post_delay": 2000,
+        "action": "Custom",
+        "custom_action":"JsonActionSequence",
+        "custom_action_param":"JJcoin_map2_1aend.json",
+        "timeout": 20000,
+        "on_error": ["JJcoin_entry"],
+        "next": ["JJcoin_taskcheck"]
+    },
+    "JJcoin_map2_1b":{
+        "recognition": "TemplateMatch",
+        "template": ["JJcoin/map2_1b.jpg"],
+        "threshold": [0.7],
+        "roi" : [226,2,536,504],
+        "post_delay": 2000,
+        "timeout":20000,
+        "on_error": ["JJcoin_entry"],
+        "action": "Custom",
+        "custom_action":"JsonActionSequence",
+        "custom_action_param": "JJcoin_map2_1bend.json",
+        "next": ["JJcoin_taskcheck"]
+    },
+    "JJcoin_map3":{
+        "recognition": "DirectHit",
+        "action": "DoNothing",
+        "next": ["JJcoin_entry"]
+    },
+    "JJcoin_taskcheck":{
+        "recognition": "OCR",
+        "expected": ["保护探险家"],
+        "post_delay": 2000,
+        "action": "Custom",
+        "custom_action":"MultiRoundsAutoBattle",
+        "custom_action_param":{
+            "check_interval": 5000,
+            "total_timeout": 420000,
+            "target_node": "JJcoin_finish",
+            "post_rounds":["JJcoin_continue_1"]
+        },
+        "on_error": ["JJcoin_entry"],
+        "next": ["JJcoin_finish"]
+    },
+    "JJcoin_finish":{
+        "recognition": "TemplateMatch",
+        "template": ["JJcoin/finish.jpg"],
+        "post_delay": 2000,
+        "action": "Click",
+        "roi" : [317,444,258,121],
+        "on_error": ["JJcoin_entry"],
+        "next": ["JJcoin_again"]
+    },
+    "JJcoin_continue_1":{
+        "recognition": "OCR",
+        "expected": ["继续挑战"],
+        "action": "Click",
+        "next": ["JJcoin_continue_2"]
+    },
+    "JJcoin_continue_2":{
+        "recognition": "OCR",
+        "expected": ["开始挑战"],
+        "action": "Click",
+        "next": []
+    }
+    
+}

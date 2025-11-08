@@ -117,3 +117,60 @@ class SetAutoBattleMode(CustomAction):
         except Exception as e:
             logger.error(f"[SetAutoBattleMode] 发生异常: {e}", exc_info=True)
             return False
+
+
+@AgentServer.custom_action("SetBattleRounds")
+class SetBattleRounds(CustomAction):
+    """
+    设置战斗轮数配置
+    用于保存用户选择的战斗轮数到全局配置中
+    
+    参数说明：
+    {
+        "battle_rounds": 3  // 战斗轮数：正整数（默认为 3）
+    }
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> bool:
+        try:
+            # 解析参数
+            if isinstance(argv.custom_action_param, str):
+                params = json.loads(argv.custom_action_param)
+            elif isinstance(argv.custom_action_param, dict):
+                params = argv.custom_action_param
+            else:
+                logger.error(f"[SetBattleRounds] 参数类型错误: {type(argv.custom_action_param)}")
+                return False
+            
+            # 获取战斗轮数（默认为 3）
+            battle_rounds = params.get("battle_rounds", 3)
+            
+            # 验证轮数值（必须是正整数）
+            if not isinstance(battle_rounds, int) or battle_rounds <= 0:
+                logger.error(f"[SetBattleRounds] 无效的轮数值: {battle_rounds}，必须是正整数")
+                return False
+            
+            # 导入 main 模块以访问全局配置
+            import main
+            
+            # 保存到全局配置
+            main.GAME_CONFIG["battle_rounds"] = battle_rounds
+            
+            logger.info(f"[SetBattleRounds] [OK] 战斗轮数已设置为: {battle_rounds}")
+            logger.info(f"[SetBattleRounds] 当前配置: {main.GAME_CONFIG}")
+            
+            # 强制刷新截图缓存，避免后续节点使用旧图
+            logger.info(f"[SetBattleRounds] 刷新截图缓存...")
+            screencap_job = context.tasker.controller.post_screencap()
+            screencap_job.wait()
+            logger.info(f"[SetBattleRounds] [OK] 截图缓存已更新")
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"[SetBattleRounds] 发生异常: {e}", exc_info=True)
+            return False

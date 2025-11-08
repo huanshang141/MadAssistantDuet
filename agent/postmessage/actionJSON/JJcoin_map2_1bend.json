@@ -1,0 +1,217 @@
+{
+  "name": "JJcoin_map2_1bend",
+  "created_time": "2025-11-08 01:33:23",
+  "total_time": 21.403857469558716,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 0.5718083381652832
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 1.2559270858764648
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 1.843991756439209
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 2.0079152584075928
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 2.4318695068359375
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 3.799960136413574
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 4.359735488891602
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 4.507844686508179
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 5.127843141555786
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 6.723891973495483
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 7.267968654632568
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 7.983971357345581
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 8.115873098373413
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 8.839922666549683
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 8.979949474334717
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 9.82001256942749
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 10.00450611114502
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 10.711793899536133
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 11.383915424346924
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 11.407920598983765
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 11.524012804031372
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 12.216691493988037
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 12.717349290847778
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 13.183889627456665
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 13.335847854614258
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 14.095871448516846
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 14.73994755744934
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 14.823879480361938
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 14.887852191925049
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 15.556936264038086
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 16.251789569854736
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 16.33186626434326
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 16.408721685409546
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 17.923933267593384
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 18.447840690612793
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 18.583940744400024
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 18.607744693756104
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 20.044034957885742
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 20.480003833770752
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 20.763936281204224
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 21.252036094665527
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 21.403857469558716
+    }
+  ]
+}

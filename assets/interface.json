@@ -49,6 +49,12 @@
             "name": "驱离通用",
             "entry": "expulsion_entry",
             "doc": "驱离本的通用流程，进入副本后再启动脚本"
+        },
+        {
+            "name": "60级皎皎币",
+            "entry": "JJcoin_rounds",
+            "doc": "60级皎皎币副本流程，进入副本后再启动脚本",
+            "option": ["战斗轮数设置"]
         }
     ],
     "option": {
@@ -161,6 +167,111 @@
                 }
             ],
             "default_case": "循环E"
+        },
+        "战斗轮数设置": {
+            "cases": [
+                {
+                    "name": "1轮",
+                    "pipeline_override": {
+                        "JJcoin_rounds": {
+                            "custom_action_param": {
+                                "battle_rounds": 1
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "2轮",
+                    "pipeline_override": {
+                        "JJcoin_rounds": {
+                            "custom_action_param": {
+                                "battle_rounds": 2
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "3轮",
+                    "pipeline_override": {
+                        "JJcoin_rounds": {
+                            "custom_action_param": {
+                                "battle_rounds": 3
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "4轮",
+                    "pipeline_override": {
+                        "JJcoin_rounds": {
+                            "custom_action_param": {
+                                "battle_rounds": 4
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "5轮",
+                    "pipeline_override": {
+                        "JJcoin_rounds": {
+                            "custom_action_param": {
+                                "battle_rounds": 5
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "6轮",
+                    "pipeline_override": {
+                        "JJcoin_rounds": {
+                            "custom_action_param": {
+                                "battle_rounds": 6
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "7轮",
+                    "pipeline_override": {
+                        "JJcoin_rounds": {
+                            "custom_action_param": {
+                                "battle_rounds": 7
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "8轮",
+                    "pipeline_override": {
+                        "JJcoin_rounds": {
+                            "custom_action_param": {
+                                "battle_rounds": 8
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "9轮",
+                    "pipeline_override": {
+                        "JJcoin_rounds": {
+                            "custom_action_param": {
+                                "battle_rounds": 9
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "10轮",
+                    "pipeline_override": {
+                        "JJcoin_rounds": {
+                            "custom_action_param": {
+                                "battle_rounds": 10
+                            }
+                        }
+                    }
+                }
+            ],
+            "default_case": "3轮"
         }
     }
 }

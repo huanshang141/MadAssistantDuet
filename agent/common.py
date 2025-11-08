@@ -490,3 +490,79 @@ class AutoBattle(CustomAction):
             logger.error(f"[AutoBattle] 发生异常: {e}", exc_info=True)
             return False
 
+@AgentServer.custom_action("MultiRoundsAutoBattle")
+class MultiRoundsAutoBattle(CustomAction):
+    """
+    多轮自动战斗动作
+    循环执行 AutoBattle，直到达到指定轮数或超时
+    """
+
+    def run(
+        self,
+        context: Context,
+        argv: CustomAction.RunArg,
+    ) -> bool:
+        # 从参数中获取配置
+        try:
+            if isinstance(argv.custom_action_param, str):
+                params = json.loads(argv.custom_action_param)
+            elif isinstance(argv.custom_action_param, dict):
+                params = argv.custom_action_param
+            else:
+                logger.error(f"[MultiRoundsAutoBattle] 参数类型错误: {type(argv.custom_action_param)}")
+                return False
+        except json.JSONDecodeError as e:
+            logger.error(f"[MultiRoundsAutoBattle] JSON 解析失败: {e}")
+            logger.error(f"  参数内容: {argv.custom_action_param}")
+            return False
+        
+        # 从全局配置获取战斗轮数
+        import main
+        total_rounds = main.GAME_CONFIG.get("battle_rounds", 3)  # 默认 3 轮
+        round_timeout = params.get("round_timeout", 420000)  # 每轮超时 420s
+        post_rounds = params.get("post_rounds", [])  # 每轮后的处理节点列表
+        
+        logger.info("=" * 50)
+        logger.info("[MultiRoundsAutoBattle] 开始多轮自动战斗")
+        logger.info(f"  总轮数: {total_rounds} (来自全局配置), 每轮超时: {round_timeout}ms")
+        
+        for round_num in range(1, total_rounds + 1):
+            logger.info(f"[MultiRoundsAutoBattle] 第 {round_num}/{total_rounds} 轮战斗开始")
+            
+            # 执行 AutoBattle 动作
+            auto_battle_action = AutoBattle()
+
+            # action_argv = CustomAction.RunArg(
+            #     node_name=argv.node_name,
+            #     custom_action_param=json.dumps({
+            #         "check_interval": params.get("check_interval", 5000),
+            #         "total_timeout": round_timeout,
+            #         "target_node": params.get("target_node"),
+            #         "interrupt_node": params.get("interrupt_node", "autoBattle_for_win")
+            #     })
+            # )
+            
+            result = auto_battle_action.run(context, argv)
+            
+            if not result:
+                logger.error(f"[MultiRoundsAutoBattle] 第 {round_num} 轮战斗失败或超时，终止多轮战斗")
+                return False
+
+            logger.info(f"[MultiRoundsAutoBattle] 第 {round_num} 轮战斗完成")
+
+            # 执行每轮后的处理节点
+            for post_node in post_rounds:
+                logger.info(f"[MultiRoundsAutoBattle] 执行每轮后的处理节点: '{post_node}'")
+                task_detail = context.run_task(post_node)
+                # if task_detail:
+                #     # 等待任务完成
+                #     job = context.tasker.get_latest_task_job()
+                #     if job:
+                #         job.wait()
+                #         logger.info(f"[MultiRoundsAutoBattle] 处理节点 '{post_node}' 执行完成")
+                # else:
+                #     logger.warning(f"[MultiRoundsAutoBattle] 处理节点 '{post_node}' 启动失败")
+        
+        logger.info(f"[MultiRoundsAutoBattle] [OK] 所有 {total_rounds} 轮战斗已完成")
+        logger.info("=" * 50)
+        return True

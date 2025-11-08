@@ -1,0 +1,167 @@
+{
+  "name": "JJCoin_map2_start1",
+  "created_time": "2025-11-08 01:28:25",
+  "total_time": 19.604456663131714,
+  "actions": [
+    {
+      "type": "key_down",
+      "key": "d",
+      "time": 1.1844773292541504
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 1.2561779022216797
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 2.1080236434936523
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 3.4604287147521973
+    },
+    {
+      "type": "key_up",
+      "key": "d",
+      "time": 3.6280605792999268
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 4.047951698303223
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 4.2039453983306885
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 4.911984443664551
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 5.366946697235107
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 5.415915012359619
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 5.531975746154785
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 7.943942070007324
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 8.088760137557983
+    },
+    {
+      "type": "key_down",
+      "key": "shift",
+      "time": 8.756012439727783
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 9.679895877838135
+    },
+    {
+      "type": "key_up",
+      "key": "shift",
+      "time": 9.811991214752197
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 9.813766479492188
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 10.320465326309204
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 10.465093851089478
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 11.202907800674438
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 11.33205270767212
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 12.052010774612427
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 12.188007116317749
+    },
+    {
+      "type": "key_down",
+      "key": "space",
+      "time": 12.655986309051514
+    },
+    {
+      "type": "key_up",
+      "key": "space",
+      "time": 12.78389310836792
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 14.256087303161621
+    },
+    {
+      "type": "key_down",
+      "key": "s",
+      "time": 14.852068424224854
+    },
+    {
+      "type": "key_up",
+      "key": "s",
+      "time": 15.29198145866394
+    },
+    {
+      "type": "key_down",
+      "key": "a",
+      "time": 15.74797773361206
+    },
+    {
+      "type": "key_up",
+      "key": "a",
+      "time": 17.87186551094055
+    },
+    {
+      "type": "key_down",
+      "key": "w",
+      "time": 18.299939155578613
+    },
+    {
+      "type": "key_up",
+      "key": "w",
+      "time": 19.604456663131714
+    }
+  ]
+}
