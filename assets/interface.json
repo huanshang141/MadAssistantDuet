@@ -1,5 +1,8 @@
 {
     "name": "MAD",
+    "url": "https://github.com/huanshang141/MadAssistantDuet",
+    "mirrorchyan_rid": "MadAssistantDuet",
+    "mirrorchyan_multiplatform": true,
     "controller": [
         {
             "name": "桌面端",
