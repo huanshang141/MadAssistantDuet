@@ -37,7 +37,7 @@
     "JJcoin_in_battle":{
         "recognition":  "OCR",
         "expected": "前往目标点",
-        "roi" : [1150,6,122,78],
+        "roi" : [1100,0,180,178],
         "post_delay": 2000,
         "action": "DoNothing",
         "next": ["JJcoin_map_rec"]
@@ -52,7 +52,7 @@
         "recognition": "TemplateMatch",
         "template": ["JJcoin/map1_start.jpg"],
         "threshold": [0.83],
-        "roi" : [23,23,167,160],
+        "roi" : [0,0,267,260],
         "post_delay": 2000,
         "action": "Custom",
         "custom_action":"JsonActionSequence",
@@ -65,7 +65,7 @@
         "recognition": "TemplateMatch",
         "template": ["JJcoin/map2_start.jpg"],
         "threshold": [0.83],
-        "roi" : [23,23,167,160],
+        "roi" : [0,0,267,260],
         "post_delay": 2000,
         "action": "Custom",
         "custom_action":"JsonActionSequence",

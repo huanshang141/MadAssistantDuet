@@ -7,6 +7,7 @@ import json
 
 # 导入 PostMessage 相关的自定义动作
 from postmessage.actions import RunWithShift, LongPressKey, PressMultipleKeys, RunWithJump
+from postmessage.JJcoin_action import JsonActionSequence
 
 # 获取日志记录器
 logger = logging.getLogger(__name__)
@@ -75,5 +76,16 @@ class RunWithJumpAction(RunWithJump):
         "jump_interval": 0.5,    // 跳跃间隔（秒），默认 0.5 秒跳一次
         "jump_press_time": 0.1   // 每次跳跃按键时长（秒），默认 0.1 秒
     }
+    """
+    pass
+
+
+@AgentServer.custom_action("JsonActionSequence")
+class JsonActionSequenceAction(JsonActionSequence):
+    """
+    使用 JSON 定义一系列动作并执行
+    使用 PostMessage + 扫描码实现
+
+    
     """
     pass
