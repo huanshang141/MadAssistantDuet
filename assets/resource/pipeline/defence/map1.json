@@ -129,11 +129,10 @@
         "custom_action_param": {
             "check_interval": 5000,
             "total_timeout": 200000,
-            "target_node": ["def_map1_again","def_map1_again_template"],
-            "interrupt_node": "autoBattle_for_win"
+            "target_node": ["def_map1_again","def_map1_again_template"]
         },
         "on_error": ["def_map1_entry"],
-        "next": []
+        "next": ["def_map1_again","def_map1_again_template"]
     }
     
 }

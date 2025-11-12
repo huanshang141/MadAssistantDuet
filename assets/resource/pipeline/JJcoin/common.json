@@ -12,35 +12,54 @@
         "action": "ClickKey",
         "key": 27,
         "post_delay": 1000,
-        "next": ["JJcoin_giveup"]
+        "next": ["JJcoin_giveup","JJcoin_giveup_template"]
     },
     "JJcoin_giveup":{
         "recognition": "OCR",
         "expected": ["放弃挑战"],
+        "roi" : [1152,673,58,15],
         "action": "Click",
         "post_delay": 1000,
         "next": ["JJcoin_confirm"]
     }, 
+    "JJcoin_giveup_template":{
+        "recognition": "TemplateMatch",
+        "template": "common/放弃挑战.png",
+        "roi" : [1157,626,48,49],
+        "action": "Click",
+        "post_delay": 1000,
+        "next": ["JJcoin_confirm"]
+    },
     "JJcoin_confirm":{
         "recognition": "OCR",
         "expected": ["确定"],
+        "roi" : [737,391,39,23],
         "action": "Click",
         "post_delay": 1000,
-        "next": ["JJcoin_again"]
+        "next": ["JJcoin_again","JJcoin_again_template","JJcoin_confirm"]
     },
     "JJcoin_again": {
         "recognition": "OCR",
         "expected": "再次进行",
+        "roi" : [882,620,79,30],
         "action": "Click",
         "post_delay": 1000,
-        "next": ["JJcoin_start"]
+        "next": ["JJcoin_start", "JJcoin_again"]
+    },
+    "JJcoin_again_template": {
+        "recognition": "TemplateMatch",
+        "template": "common/再次进行.png",
+        "roi" : [819,619,35,35],
+        "action": "Click",
+        "post_delay": 1000,
+        "next": ["JJcoin_start", "JJcoin_again_template"]
     },
     "JJcoin_start": {
         "recognition": "OCR",
         "expected": "开始挑战",
         "post_delay": 1000,
         "action": "Click",
-        "next": ["JJcoin_in_battle"]
+        "next": ["JJcoin_in_battle", "JJcoin_start"]
     },
     "JJcoin_in_battle":{
         "recognition":  "OCR",

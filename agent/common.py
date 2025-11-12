@@ -240,8 +240,7 @@ class MultiRoundsAutoBattle(CustomAction):
 
             # 执行每轮后的处理节点
             for post_node in post_rounds:
-                logger.info(f"[MultiRoundsAutoBattle] 执行每轮后的处理节点: '{post_node}'")
-                task_detail = context.run_task(post_node)
+                context.run_task(post_node)
 
         # 最后一轮
         auto_battle_action.run(context, argv)

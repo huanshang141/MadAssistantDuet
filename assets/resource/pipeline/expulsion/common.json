@@ -36,7 +36,7 @@
         "roi" : [882,620,79,30],
         "action": "Click",
         "post_delay": 1000,
-        "next": ["expulsion_start"]
+        "next": ["expulsion_start", "expulsion_again"]
     },
     "expulsion_again_template": {
         "recognition": "TemplateMatch",
@@ -97,11 +97,10 @@
         "custom_action_param": {
             "check_interval": 5000,
             "total_timeout": 200000,
-            "target_node": ["expulsion_again","expulsion_again_template"],
-            "interrupt_node": "autoBattle_for_win"
+            "target_node": ["expulsion_again","expulsion_again_template"]
         },
         "on_error": ["expulsion_entry"],
-        "next": []
+        "next": ["expulsion_again","expulsion_again_template"]
     }
 
 }
