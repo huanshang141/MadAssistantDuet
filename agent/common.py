@@ -223,8 +223,14 @@ class MultiRoundsAutoBattle(CustomAction):
             logger.error(f"  参数内容: {argv.custom_action_param}")
             return False
         
-        # 从全局配置获取战斗轮数
-        total_rounds = GAME_CONFIG.get("battle_rounds", 3)  # 默认 3 轮
+        # 从全局配置获取战斗轮数，确保是整数且至少 1
+        try:
+            total_rounds = int(GAME_CONFIG.get("battle_rounds", 3))
+        except Exception:
+            total_rounds = 3
+        if total_rounds < 1:
+            total_rounds = 1
+
         round_timeout = params.get("round_timeout", 420000)  # 每轮超时 420s
         post_rounds = params.get("post_rounds", [])  # 每轮后的处理节点列表
         
@@ -232,26 +238,33 @@ class MultiRoundsAutoBattle(CustomAction):
         logger.info("[MultiRoundsAutoBattle] 开始多轮自动战斗")
         logger.info(f"  总轮数: {total_rounds} (来自全局配置), 每轮超时: {round_timeout}ms")
         
+        # 提前创建 AutoBattle 实例，避免在 total_rounds == 1 时未定义变量的问题
+        auto_battle_action = AutoBattle()
+
+        # 执行前 (total_rounds-1) 轮，每轮完成后执行 post_rounds
         for round_num in range(1, total_rounds):
             logger.info(f"[MultiRoundsAutoBattle] 第 {round_num}/{total_rounds} 轮战斗开始")
-            
-            # 执行 AutoBattle 动作
-            auto_battle_action = AutoBattle()
 
             result = auto_battle_action.run(context, argv)
-            
+
             if not result:
                 logger.error(f"[MultiRoundsAutoBattle] 第 {round_num} 轮战斗失败或超时，终止多轮战斗")
                 return False
 
             logger.info(f"[MultiRoundsAutoBattle] 第 {round_num} 轮战斗完成")
 
-            # 执行每轮后的处理节点
+            # 执行每轮后的处理节点（异步/同步由 context.run_task 决定）
             for post_node in post_rounds:
-                context.run_task(post_node)
+                try:
+                    context.run_task(post_node)
+                except Exception as e:
+                    logger.warning(f"[MultiRoundsAutoBattle] 执行 post_round '{post_node}' 时出错: {e}")
 
-        # 最后一轮
-        auto_battle_action.run(context, argv)
+        # 最后一轮（或仅有的一轮）
+        last_result = auto_battle_action.run(context, argv)
+        if not last_result:
+            logger.error(f"[MultiRoundsAutoBattle] 最后一轮战斗失败或超时")
+            return False
         logger.info(f"[MultiRoundsAutoBattle] [OK] 所有 {total_rounds} 轮战斗已完成")
         logger.info("=" * 50)
         return True
