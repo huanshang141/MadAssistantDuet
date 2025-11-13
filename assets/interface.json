@@ -3,6 +3,8 @@
     "url": "https://github.com/huanshang141/MadAssistantDuet",
     "mirrorchyan_rid": "MadAssistantDuet",
     "mirrorchyan_multiplatform": true,
+    "mfa_max_version": "v1.7.1",
+    "mfa_min_version": "v1.7.1",
     "controller": [
         {
             "name": "桌面端",
@@ -10,8 +12,8 @@
             "win32": {
                 "class_regex": ".*",
                 "window_regex": "二重螺旋|Duet Night Abyss",
-                "input": 1,
-                "screencap": 2
+                "input": 4,
+                "screencap": 16
             }
         }
     ],
