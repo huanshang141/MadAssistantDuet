@@ -27,7 +27,7 @@ from config import GAME_CONFIG
 # 重要：必须在 AgentServer.start_up() 之前导入，以便装饰器注册自定义 Action 和 Recognition
 import common
 import setting
-from postmessage import RunWithShift, LongPressKey, PressMultipleKeys, RunWithJump
+from movement_action import RunWithShift, LongPressKey, PressMultipleKeys, RunWithJump, JsonActionSequence
 import tools
 
 

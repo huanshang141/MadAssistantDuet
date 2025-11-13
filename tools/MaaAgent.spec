@@ -38,17 +38,12 @@ except Exception:
     datas_list = []
 
 # Also include agent/postmessage/actionJSON directory (pipeline action JSONs)
-try:
-    action_json_dir = os.path.join(spec_root, 'agent', 'postmessage', 'actionJSON')
-    if os.path.exists(action_json_dir):
-        for root, dirs, files in os.walk(action_json_dir):
-            for fname in files:
-                src = os.path.join(root, fname)
-                rel = os.path.relpath(root, action_json_dir)
-                dest = os.path.join('postmessage', 'actionJSON', rel) if rel != '.' else os.path.join('postmessage', 'actionJSON')
-                datas_list.append((src, dest))
-except Exception:
-    pass
+# NOTE: actionJSON files should NOT be bundled into the exe; they will be
+# read from the working directory at runtime (e.g. <working_dir>\agent\actionJSON).
+# The previous implementation added agent/postmessage/actionJSON into datas_list,
+# which caused JSON files to be embedded into the frozen _MEI tempdir. That is
+# undesirable for runtime resource management and editing. Intentionally left
+# no datas added for actionJSON here.
 
 
 a = Analysis(
